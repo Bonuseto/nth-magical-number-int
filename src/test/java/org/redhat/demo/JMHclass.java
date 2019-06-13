@@ -8,7 +8,6 @@ import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
@@ -19,51 +18,22 @@ import org.openjdk.jmh.annotations.Warmup;
 @Measurement(iterations = 5000)
 public class JMHclass {
 
-    int n;
-    int a;
-    int b;
-
-    @Setup
-    public void init() {
-        n = 12;
-        a = 14;
-        b = 16;
-    }
-
-    @Benchmark
-    public int benchmarkModulate() {
-        return Main.modulate(12);
-    }
-
-    @Benchmark
-    public boolean benchmarkIntIsNotNull() {
-        return Main.intIsNotNull(a);
-    }
+    final static int N = 12;
+    final static int A = 14;
+    final static int B = 16;
 
     @Benchmark
     public int[] benchmarkSteps() {
-        return Main.steps(a,b);
+        return Main.steps(A, B);
     }
 
     @Benchmark
     public long benchmarkNthNonZeroMagicalNumber() {
-        return Main.nthNonZeroMagicalNumber(n, a, b);
+        return Main.nthNonZeroMagicalNumber(N, A, B);
     }
 
     @Benchmark
-    public int benchmarkGreatestCommonDenominator() {
-        return Main.greatestCommonDenominator(a,b);
+    public int benchmarkNthMagicalNumber() {
+        return Main.nthMagicalNumber(N, A, B);
     }
-
-    @Benchmark
-    public int benchmarkLowestCommonMultiple(){
-        return Main.lowestCommonMultiple(a,b);
-    }
-
-    @Benchmark
-    public int benchmarkNthMagicalNumber(){
-        return Main.nthMagicalNumber(n,a,b);
-    }
-
-
 }
